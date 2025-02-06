@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Valentine ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffccff, #ff99cc);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            z-index: 10;
+            position: relative;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        #yesBtn {
+            background: #ff4081;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.6);
+            animation: sparkle 1.5s infinite alternate;
+        }
+
+        #noBtn {
+            background: #f44336;
+            color: white;
+        }
+
+        .floating-heart, .floating-rose {
+            position: absolute;
+            font-size: 30px;
+            animation: float 5s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0.5; }
+        }
+
+        @keyframes sparkle {
+            0% { box-shadow: 0 0 10px rgba(255, 64, 129, 0.6); }
+            100% { box-shadow: 0 0 20px rgba(255, 64, 129, 1); }
+        }
+
+        .yes-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .love-letter {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Palkuuu, My love ❤️<br>Will you be my Valentine?</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes! 🥰</button>
+            <button id="noBtn">No 🤬</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
+
+        noBtn.addEventListener('mouseover', () => {
+            noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            container.style.display = 'none';
+            showYesMessage();
+            startFloatingHearts();
+            startFloatingRoses();
+        });
+
+        function showYesMessage() {
+            const message = document.createElement('div');
+            message.className = 'yes-message';
+            message.innerHTML = `
+                <h2>MY RABBIT! 💖</h2>
+                <p><h3>My love, my Palkuuu 😚😚😚</h3>, Mere taqdeer me likhi pyaas h tu, kisika mera hone ka ehsaas h tu, tu h to bahaar h zindgi me, tere bin bhi bhala kya khaakh h zindgi me. 🥰<br><br>
+                Here’s a garden of roses just for you my cute little rabbit! 🌹🌹🌹</p>
+                <div class="love-letter">P.S. You are my forever, my always. 💖</div>
+            `;
+            document.body.appendChild(message);
+        }
+
+        function startFloatingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = '❤️';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
+            }, 200);
+        }
+
+        function startFloatingRoses() {
+            setInterval(() => {
+                const rose = document.createElement('div');
+                rose.className = 'floating-rose';
+                rose.textContent = '🌹';
+                rose.style.left = `${Math.random() * 100}vw`;
+                rose.style.top = `${Math.random() * 100}vh`;
+                rose.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                document.body.appendChild(rose);
+
+                setTimeout(() => rose.remove(), 5000);
+            }, 100);  // Increase frequency of rose spawns
+        }
+    </script>
+</body>
+</html>
